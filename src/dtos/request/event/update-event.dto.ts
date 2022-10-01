@@ -1,5 +1,5 @@
 import { Exclude, Expose } from 'class-transformer'
-import { IsOptional, IsString } from 'class-validator'
+import { IsDateString, IsOptional, IsString } from 'class-validator'
 import { BaseDto } from '../../base.dto'
 
 @Exclude()
@@ -13,4 +13,9 @@ export class UpdateEventDto extends BaseDto {
   @IsOptional()
   @IsString()
   readonly description?: string
+
+  @Expose()
+  @IsOptional()
+  @IsDateString()
+  readonly eventAt?: Date
 }
