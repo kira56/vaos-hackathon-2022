@@ -14,7 +14,20 @@ export class EventDao implements IGenericDao<Event> {
   }): Promise<Event[]> {
     const { skip, take, cursor, where, orderBy } = params
 
-    return prismaClient.event.findMany({ skip, take, cursor, where, orderBy })
+    return prismaClient.event.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+      orderBy,
+      include: {
+        _count: {
+          select: {
+            registers: true,
+          },
+        },
+      },
+    })
   }
 
   async find(eventWhereUniqueInput: Prisma.EventWhereUniqueInput): Promise<Event | null> {

@@ -37,11 +37,11 @@ export class RegisterService {
   static async join(input: CreateRegisterDto, userId: string): Promise<RegisterDto> {
     const { eventId } = input
 
-    const findByUser = await this.registerDao.findFirst({ userId })
+    // const findByUser = await this.registerDao.findFirst({ userId })
 
-    if (findByUser) {
-      throw new BadRequest('User already subscribe in this event')
-    }
+    // if (findByUser) {
+    //   throw new BadRequest('User already subscribe in this event')
+    // }
 
     const result = await this.registerDao.save({
       event: {

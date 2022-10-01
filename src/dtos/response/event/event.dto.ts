@@ -16,4 +16,7 @@ export class EventDto {
 
   @Expose()
   readonly updateAt: Date
+
+  @Expose()
+  readonly _count: unknown
 }
