@@ -1,8 +1,7 @@
 import express, { Router } from 'express'
 import asyncHandler from 'express-async-handler'
 import passport from 'passport'
-import { allUsers, createUser, deleteUser, findOneUser, me, updateMe, updateUser } from '../controllers/user.controller'
-// import { validateMaster } from '../guards/admin.guard'
+import { allUsers, createUser, findOneUser, me, updateMe } from '../controllers/user.controller'
 import { validateUser } from '../guards/user.guard'
 
 const router = express.Router()
