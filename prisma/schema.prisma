@@ -1,0 +1,61 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  email     String   @unique
+  password  String
+  avatar    String?
+  location  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updateAt  DateTime @updatedAt @map("updated_at")
+
+  tokens    Token[]
+  eventUser EventUser[]
+
+  @@map("users")
+}
+
+model Token {
+  id           String   @id @default(uuid()) @db.Uuid
+  user         User?    @relation(fields: [userId], references: [id])
+  userId       String   @map("user_id") @db.Uuid
+  jti          String   @unique @default(uuid())
+  aud          String?
+  refreshToken String   @unique @default(uuid()) @map("refresh_token")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updateAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("tokens")
+}
+
+model Event {
+  id          String      @id @default(uuid()) @db.Uuid
+  title       String
+  description String
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  eventUser   EventUser[]
+
+  @@map("events")
+}
+
+model EventUser {
+  id        String   @id @default(uuid()) @db.Uuid
+  moderator Boolean  @default(false)
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   String   @map("event_id") @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @map("user_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("event_users")
+}
