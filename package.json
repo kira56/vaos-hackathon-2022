@@ -18,6 +18,7 @@
     "prisma:seed": "prisma db seed",
     "prisma:format": "prisma format",
     "lint": "tsc --project tsconfig.json --noEmit && eslint \"{src,apps,libs,test}/**/*.ts\" --color --max-warnings=0"
+    
   },
   "author": "Diego Cahuayo Salazar",
   "license": "MIT",
@@ -100,5 +101,8 @@
       "jest-extended"
     ],
     "testTimeout": 15000
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
