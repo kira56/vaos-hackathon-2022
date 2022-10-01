@@ -63,5 +63,6 @@ model Register {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
 
+  @@unique([eventId, userId])
   @@map("registers")
 }
