@@ -21,6 +21,9 @@ export class EventDao implements IGenericDao<Event> {
     return prismaClient.event.findUnique({
       where: eventWhereUniqueInput,
       rejectOnNotFound: false,
+      include: {
+        user: true,
+      },
     })
   }
 
