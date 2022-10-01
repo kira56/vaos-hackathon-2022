@@ -1,6 +1,4 @@
 import { plainToClass, plainToInstance } from 'class-transformer'
-import { BadRequest } from 'http-errors'
-import { EventDao } from '../daos/event.dao'
 import { RegisterDao } from '../daos/register.dao'
 import { CreateRegisterDto } from '../dtos/request/register/create-register.dto'
 import { RegisterDto } from '../dtos/response/register/register.dto'
@@ -36,12 +34,6 @@ export class RegisterService {
 
   static async join(input: CreateRegisterDto, userId: string): Promise<RegisterDto> {
     const { eventId } = input
-
-    // const findByUser = await this.registerDao.findFirst({ userId })
-
-    // if (findByUser) {
-    //   throw new BadRequest('User already subscribe in this event')
-    // }
 
     const result = await this.registerDao.save({
       event: {
