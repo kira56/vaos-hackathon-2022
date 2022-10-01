@@ -6,7 +6,6 @@ import { HttpError } from 'http-errors'
 import { plainToClass } from 'class-transformer'
 import { router } from './routes'
 import { HttpErrorDto } from './dtos/http-error.dto'
-// import { initEvents } from './core/events/event-emitter.event'
 
 const app: Express = express()
 
@@ -63,5 +62,4 @@ app.use(errorHandler)
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`🚀 Server connecte on port %d`, PORT, ENVIROMENT)
-  // initEvents()
 })
